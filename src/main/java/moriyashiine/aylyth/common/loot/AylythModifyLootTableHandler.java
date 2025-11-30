@@ -1,5 +1,6 @@
 package moriyashiine.aylyth.common.loot;
 
+import net.fabricmc.fabric.api.loot.v2.FabricLootTableBuilder;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
@@ -13,7 +14,7 @@ public final class AylythModifyLootTableHandler {
                 LootTable table = lootManager.getLootTable(id.withPrefixedPath("additions/"));
                 if (table != LootTable.EMPTY) {
                     for (LootPool pool : table.pools) {
-                        tableBuilder.pool(pool);
+                        ((FabricLootTableBuilder) tableBuilder).pool(pool);
                     }
                 }
             }
