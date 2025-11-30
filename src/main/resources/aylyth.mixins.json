@@ -9,6 +9,7 @@
     "AdvancementDisplayMixin",
     "EnchantmentTargetMixin",
     "EntityAccessor",
+    "EntityDropsMixin"
     "EntityMixin",
     "LivingEntityMixin",
     "LootContextTypesAccessor",
