@@ -8,6 +8,7 @@ import moriyashiine.aylyth.common.item.AylythItems;
 import net.fabricmc.fabric.api.renderer.v1.RendererAccess;
 import net.fabricmc.fabric.api.renderer.v1.model.ForwardingBakedModel;
 import net.fabricmc.fabric.api.renderer.v1.render.RenderContext;
+import net.fabricmc.fabric.api.renderer.v1.model.FabricBakedModel;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.client.MinecraftClient;
@@ -54,7 +55,7 @@ public class SoulHearthBlockModel extends ForwardingBakedModel {
                 stack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(90));
                 stack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(90 * i), 0.5f, 0.5f, 0.5f);
                 RenderUtils.copyOver(context, stack);
-                model.emitItemQuads(RENDERED_ITEM, randomSupplier, context);
+                ((FabricBakedModel) model).emitItemQuads(RENDERED_ITEM, randomSupplier, context);
                 context.popTransform();
                 stack.pop();
             }
