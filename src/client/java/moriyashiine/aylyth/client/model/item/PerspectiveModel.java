@@ -37,7 +37,7 @@ public class PerspectiveModel extends ForwardingBakedModel {
         model.getTransformation().getTransformation(transformMode).apply(transformMode == ModelTransformationMode.FIRST_PERSON_LEFT_HAND || transformMode == ModelTransformationMode.THIRD_PERSON_LEFT_HAND, matrixStack);
         matrixStack.translate(-0.5f, -0.5f, -0.5f);
         RenderUtils.copyOver(context, matrixStack);
-        model.emitItemQuads(stack, randomSupplier, context);
+        ((FabricBakedModel) model).emitItemQuads(stack, randomSupplier, context);
         context.popTransform();
     }
 }
