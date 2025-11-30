@@ -52,6 +52,7 @@ import moriyashiine.aylyth.common.world.gen.AylythStructureProcessors;
 import moriyashiine.aylyth.common.world.gen.AylythTreeDecoratorTypes;
 import moriyashiine.aylyth.common.world.gen.AylythTrunkPlacerTypes;
 import moriyashiine.aylyth.common.world.gen.biome.AylythBiomeModifications;
+import moriyashiine.aylyth.common.util.AylythDropsAccessor;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
@@ -82,6 +83,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 import java.util.Collection;
 import java.util.List;
