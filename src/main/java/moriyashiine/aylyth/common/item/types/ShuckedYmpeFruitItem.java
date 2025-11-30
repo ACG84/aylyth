@@ -57,7 +57,7 @@ public class ShuckedYmpeFruitItem extends Item {
 				double x = mob.getX(), y = mob.getY(), z = mob.getZ();
 				mob.readNbt(entityCompound);
 				mob.teleport(x, y, z);
-				mob.removeAttached(AylythEntityAttachmentTypes.PREVENT_DROPS);
+				((AylythDropsAccessor) mob).aylyth$setPreventDrops(false);
 				world.spawnEntity(mob);
 				world.playSound(null, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 1, 1);
 				// consume the entity-holding shucked fruit, give back an empty fruit to the player if in creative
