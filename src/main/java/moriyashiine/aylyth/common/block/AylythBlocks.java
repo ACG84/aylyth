@@ -37,23 +37,23 @@ public interface AylythBlocks {
 	Block OPALESCENT_SAPSTONE = register("opalescent_sapstone", new Block(copyOf(Blocks.STONE).mapColor(MapColor.PINK)));
 
 	Block GREEN_AYLYTHIAN_OAK_SAPLING = register("green_aylythian_oak_sapling", new SaplingBlock(new SimpleLargeSaplingGenerator(null, null), copyOf(Blocks.OAK_SAPLING).mapColor(MapColor.GREEN)));
-	Block POTTED_GREEN_AYLYTHIAN_OAK_SAPLING = register("potted_green_aylythian_oak_sapling", Blocks.createFlowerPotBlock(GREEN_AYLYTHIAN_OAK_SAPLING));
-	Block GREEN_AYLYTHIAN_OAK_LEAVES = register("green_aylythian_oak_leaves", Blocks.createLeavesBlock(BlockSoundGroup.GRASS));
+	Block POTTED_GREEN_AYLYTHIAN_OAK_SAPLING = register("potted_green_aylythian_oak_sapling", new FlowerPotBlock(GREEN_AYLYTHIAN_OAK_SAPLING, AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
+	Block GREEN_AYLYTHIAN_OAK_LEAVES = register("green_aylythian_oak_leaves", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).strength(0.2F).tickRandomly().sound(BlockSoundGroup.GRASS).nonOpaque().allowsSpawning(Blocks::canSpawnOnLeaves).suffocates(Blocks::never).blockVision(Blocks::never)));
 	Block DARK_OAK_BRANCH = register("dark_oak_branch", new BranchBlock(AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
 	Block BARE_DARK_OAK_BRANCH = register("bare_dark_oak_branch", new BranchBlock(copyOf(DARK_OAK_BRANCH).mapColor(MapColor.BROWN)));
 	
 	Block ORANGE_AYLYTHIAN_OAK_SAPLING = register("orange_aylythian_oak_sapling", new SaplingBlock(new SimpleLargeSaplingGenerator(null, null), copyOf(Blocks.OAK_SAPLING).mapColor(MapColor.ORANGE)));
-	Block POTTED_ORANGE_AYLYTHIAN_OAK_SAPLING = register("potted_orange_aylythian_oak_sapling", Blocks.createFlowerPotBlock(ORANGE_AYLYTHIAN_OAK_SAPLING));
+	Block POTTED_ORANGE_AYLYTHIAN_OAK_SAPLING = register("potted_orange_aylythian_oak_sapling", new FlowerPotBlock(ORANGE_AYLYTHIAN_OAK_SAPLING, AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
 	Block ORANGE_AYLYTHIAN_OAK_LEAVES = register("orange_aylythian_oak_leaves", new LeavesBlock(copyOf(Blocks.OAK_LEAVES).mapColor(MapColor.ORANGE)));
 	Block ORANGE_AYLYTHIAN_OAK_BRANCH = register("orange_aylythian_oak_branch", new BranchBlock(copyOf(DARK_OAK_BRANCH).mapColor(MapColor.ORANGE)));
 
 	Block RED_AYLYTHIAN_OAK_SAPLING = register("red_aylythian_oak_sapling", new SaplingBlock(new SimpleLargeSaplingGenerator(null, null), copyOf(Blocks.OAK_SAPLING).mapColor(MapColor.RED)));
-	Block POTTED_RED_AYLYTHIAN_OAK_SAPLING = register("potted_red_aylythian_oak_sapling", Blocks.createFlowerPotBlock(RED_AYLYTHIAN_OAK_SAPLING));
+	Block POTTED_RED_AYLYTHIAN_OAK_SAPLING = register("potted_red_aylythian_oak_sapling", new FlowerPotBlock(RED_AYLYTHIAN_OAK_SAPLING, AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
 	Block RED_AYLYTHIAN_OAK_LEAVES = register("red_aylythian_oak_leaves", new LeavesBlock(copyOf(Blocks.OAK_LEAVES).mapColor(MapColor.RED)));
 	Block RED_AYLYTHIAN_OAK_BRANCH = register("red_aylythian_oak_branch", new BranchBlock(copyOf(DARK_OAK_BRANCH).mapColor(MapColor.RED)));
 	
 	Block BROWN_AYLYTHIAN_OAK_SAPLING = register("brown_aylythian_oak_sapling", new SaplingBlock(new SimpleLargeSaplingGenerator(null, null), copyOf(Blocks.OAK_SAPLING).mapColor(MapColor.BROWN)));
-	Block POTTED_BROWN_AYLYTHIAN_OAK_SAPLING = register("potted_brown_aylythian_oak_sapling", Blocks.createFlowerPotBlock(BROWN_AYLYTHIAN_OAK_SAPLING));
+	Block POTTED_BROWN_AYLYTHIAN_OAK_SAPLING = register("potted_brown_aylythian_oak_sapling", new FlowerPotBlock(BROWN_AYLYTHIAN_OAK_SAPLING, AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
 	Block BROWN_AYLYTHIAN_OAK_LEAVES = register("brown_aylythian_oak_leaves", new LeavesBlock(copyOf(Blocks.OAK_LEAVES).mapColor(MapColor.BROWN)));
 	Block BROWN_AYLYTHIAN_OAK_BRANCH = register("brown_aylythian_oak_branch", new BranchBlock(copyOf(DARK_OAK_BRANCH).mapColor(MapColor.BROWN)));
 
@@ -62,7 +62,7 @@ public interface AylythBlocks {
 	Block YMPE_LOG = register("ympe_log", new PillarBlock(copyOf(Blocks.OAK_LOG)));
 	Block YMPE_WOOD = register("ympe_wood", new PillarBlock(copyOf(Blocks.OAK_WOOD)));
 	Block YMPE_SAPLING = register("ympe_sapling", new YmpeSaplingBlock(new SimpleLargeSaplingGenerator(AylythConfiguredFeatures.YMPE_TREE, AylythConfiguredFeatures.BIG_YMPE_TREE), AylythConfiguredFeatures.TWISTED_YMPE_GROWTH, copyOf(Blocks.OAK_SAPLING)));
-	Block POTTED_YMPE_SAPLING = register("potted_ympe_sapling", Blocks.createFlowerPotBlock(YMPE_SAPLING));
+	Block POTTED_YMPE_SAPLING = register("potted_ympe_sapling", new FlowerPotBlock(YMPE_SAPLING, AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
 	Block YMPE_PLANKS = register("ympe_planks", new Block(copyOf(Blocks.OAK_PLANKS)));
 	Block YMPE_STAIRS = register("ympe_stairs", new StairsBlock(YMPE_PLANKS.getDefaultState(), copyOf(Blocks.OAK_STAIRS)));
 	Block YMPE_SLAB = register("ympe_slab", new SlabBlock(copyOf(Blocks.OAK_SLAB)));
@@ -86,7 +86,7 @@ public interface AylythBlocks {
 	Block POMEGRANATE_LOG = register("pomegranate_log", new PillarBlock(copyOf(Blocks.OAK_LOG)));
 	Block POMEGRANATE_WOOD = register("pomegranate_wood", new PillarBlock(copyOf(Blocks.OAK_WOOD)));
 	Block POMEGRANATE_SAPLING = register("pomegranate_sapling", new SaplingBlock(new SimpleSaplingGenerator(AylythConfiguredFeatures.POMEGRANATE_TREE), copyOf(Blocks.OAK_SAPLING)));
-	Block POTTED_POMEGRANATE_SAPLING = register("potted_pomegranate_sapling", Blocks.createFlowerPotBlock(POMEGRANATE_SAPLING));
+	Block POTTED_POMEGRANATE_SAPLING = register("potted_pomegranate_sapling", new FlowerPotBlock(POMEGRANATE_SAPLING, AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
 	Block POMEGRANATE_PLANKS = register("pomegranate_planks", new Block(copyOf(Blocks.OAK_PLANKS)));
 	Block POMEGRANATE_STAIRS = register("pomegranate_stairs", new StairsBlock(POMEGRANATE_PLANKS.getDefaultState(), copyOf(Blocks.OAK_STAIRS)));
 	Block POMEGRANATE_SLAB = register("pomegranate_slab", new SlabBlock(copyOf(Blocks.OAK_SLAB)));
@@ -107,7 +107,7 @@ public interface AylythBlocks {
 	Block WRITHEWOOD_LOG = register("writhewood_log", new PillarBlock(copyOf(Blocks.OAK_LOG)));
 	Block WRITHEWOOD_WOOD = register("writhewood_wood", new PillarBlock(copyOf(Blocks.OAK_WOOD)));
 	Block WRITHEWOOD_SAPLING = register("writhewood_sapling", new WaterloggableSaplingBlock(new SimpleSaplingGenerator(AylythConfiguredFeatures.WRITHEWOOD_TREE), copyOf(Blocks.OAK_SAPLING)));
-	Block POTTED_WRITHEWOOD_SAPLING = register("potted_writhewood_sapling", Blocks.createFlowerPotBlock(WRITHEWOOD_SAPLING));
+	Block POTTED_WRITHEWOOD_SAPLING = register("potted_writhewood_sapling", new FlowerPotBlock(WRITHEWOOD_SAPLING, AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
 	Block WRITHEWOOD_PLANKS = register("writhewood_planks", new Block(copyOf(Blocks.OAK_PLANKS)));
 	Block WRITHEWOOD_STAIRS = register("writhewood_stairs", new StairsBlock(WRITHEWOOD_PLANKS.getDefaultState(), copyOf(Blocks.OAK_STAIRS)));
 	Block WRITHEWOOD_SLAB = register("writhewood_slab", new SlabBlock(copyOf(Blocks.OAK_SLAB)));
@@ -127,7 +127,7 @@ public interface AylythBlocks {
 
 	Block SEEPING_WOOD = register("seeping_wood", new PillarBlock(copyOf(Blocks.OAK_WOOD)));
 	Block GIRASOL_SAPLING = register("girasol_sapling", new GirasolSaplingBlock(new SimpleSaplingGenerator(AylythConfiguredFeatures.GIRASOL_TREE), copyOf(Blocks.OAK_SAPLING)));
-	Block POTTED_GIRASOL_SAPLING = register("potted_girasol_sapling", Blocks.createFlowerPotBlock(GIRASOL_SAPLING));
+	Block POTTED_GIRASOL_SAPLING = register("potted_girasol_sapling", new FlowerPotBlock(GIRASOL_SAPLING, AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
 
 	Block CHTHONIA_WOOD = register("chthonia_wood", new PillarBlock(copyOf(Blocks.OAK_WOOD).mapColor(MapColor.PALE_GREEN)));
 	Block NEPHRITIC_CHTHONIA_WOOD = register("nephritic_chthonia_wood", new OneTimeHarvestablePillarBlock(Aylyth.id("harvest/nephritic_chthonia_wood"), state -> AylythBlocks.CHTHONIA_WOOD.getDefaultState().with(PillarBlock.AXIS, state.get(PillarBlock.AXIS)), copyOf(Blocks.OAK_WOOD).mapColor(MapColor.PALE_GREEN)));
@@ -141,7 +141,7 @@ public interface AylythBlocks {
 	Block NYSIAN_GRAPE_VINE = register("nysian_grape_vine", new NysianGrapeVineBlock(copyOf(Blocks.VINE)));
 
 	Block MARIGOLD = register("marigolds", new FlowerBlock(AylythStatusEffects.MORTECHIS, 9, copyOf(Blocks.DANDELION)));
-	Block POTTED_MARIGOLD = register("potted_marigolds", Blocks.createFlowerPotBlock(MARIGOLD));
+	Block POTTED_MARIGOLD = register("potted_marigolds", new FlowerPotBlock(MARIGOLD, AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
 	StagedMushroomPlantBlock JACK_O_LANTERN_MUSHROOM = register("jack_o_lantern_mushroom", new JackolanternMushroomBlock(Suppliers.memoize(() -> (SpreadingPlantBlock) Registries.BLOCK.get(Aylyth.id("shelf_jack_o_lantern_mushroom"))), FabricBlockSettings.create().notSolid().pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.WART_BLOCK).noCollision().nonOpaque().ticksRandomly().luminance(state -> state.get(JackolanternShelfMushroomBlock.GLOWING) ? state.get(StagedMushroomPlantBlock.STAGE)+4 : 0)));
 	ShelfMushroomBlock SHELF_JACK_O_LANTERN_MUSHROOM = register("shelf_jack_o_lantern_mushroom", new JackolanternShelfMushroomBlock(() -> JACK_O_LANTERN_MUSHROOM, FabricBlockSettings.create().notSolid().pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.WART_BLOCK).noCollision().nonOpaque().ticksRandomly().luminance(state -> state.get(JackolanternShelfMushroomBlock.GLOWING) ? 5 : 0)));
 	Block GHOSTCAP_MUSHROOM = register("ghostcap_mushroom", new SpreadingPlantBlock(FabricBlockSettings.create().notSolid().pistonBehavior(PistonBehavior.DESTROY).sounds(BlockSoundGroup.GLOW_LICHEN).noCollision().nonOpaque().ticksRandomly()));
