@@ -77,10 +77,11 @@ repositories {
         name "reach entity attributes"
         url "https://maven.jamieswhiteshirt.com/libs-release"
     }
+    
     maven {
-        name "terraform"
-        url "https://maven.terraformersmc.com"
-    }
+            name = "TerraformersMC"
+            url = "https://maven.terraformersmc.com/"
+        }
     maven {
         name "geckolib"
         url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven"
