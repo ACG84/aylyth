@@ -19,15 +19,24 @@ import net.minecraft.loot.condition.*;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.loot.entry.AlternativeEntry;
 import net.minecraft.loot.entry.DynamicEntry;
+import net.minecraft.loot.entry.GroupEntry;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.StatePredicate;
+import net.minecraft.predicate.item.EnchantmentPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.registry.tag.ItemTags;
 
 public class AylythBlockLootProvider extends FabricBlockLootTableProvider {
+    
+    // CUSTOM CONSTANTS (Renamed to avoid conflict with private vanilla fields)
+    private static final LootCondition.Builder SILK_TOUCH_OR_SHEARS = MatchToolLootCondition.builder(ItemPredicate.Builder.create().items(Items.SHEARS)).or(MatchToolLootCondition.builder(ItemPredicate.Builder.create().enchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, NumberRange.IntRange.ANY))));
+    private static final LootCondition.Builder NO_SILK_TOUCH_OR_SHEARS = SILK_TOUCH_OR_SHEARS.invert();
+    private static final float[] LEAVES_STICK_CHANCE = new float[]{0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F};
+
     public AylythBlockLootProvider(FabricDataOutput dataGenerator) {
         super(dataGenerator);
     }
@@ -129,8 +138,10 @@ public class AylythBlockLootProvider extends FabricBlockLootTableProvider {
 
     private LootTable.Builder leafyBranch(Block branch, ItemConvertible strewnLeaves) {
         return dropsWithSilkTouchOrShears(branch,
-                ItemEntry.builder(Items.STICK).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 2)))
-                        .groupEntry(ItemEntry.builder(strewnLeaves).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 1))))
+                GroupEntry.create(
+                        ItemEntry.builder(Items.STICK).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 2))),
+                        ItemEntry.builder(strewnLeaves).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 1)))
+                )
         );
     }
 
@@ -138,15 +149,15 @@ public class AylythBlockLootProvider extends FabricBlockLootTableProvider {
         return LootTable.builder().type(LootContextTypes.BLOCK)
                 .pool(
                         addSurvivesExplosionCondition(leaves, LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0F)).with(ItemEntry.builder(leaves)))
-                                .conditionally(WITH_SILK_TOUCH_OR_SHEARS)
+                                .conditionally(SILK_TOUCH_OR_SHEARS)
                                 .conditionally(TableBonusLootCondition.builder(Enchantments.FORTUNE, chances))
                 ).pool(
                         LootPool.builder()
                                 .rolls(ConstantLootNumberProvider.create(1.0F))
-                                .conditionally(WITHOUT_SILK_TOUCH_NOR_SHEARS)
+                                .conditionally(NO_SILK_TOUCH_OR_SHEARS)
                                 .with(
                                         this.applyExplosionDecay(leaves, ItemEntry.builder(sticks).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F))))
-                                                .conditionally(TableBonusLootCondition.builder(Enchantments.FORTUNE, LEAVES_STICK_DROP_CHANCE))
+                                                .conditionally(TableBonusLootCondition.builder(Enchantments.FORTUNE, LEAVES_STICK_CHANCE))
                                 )
                 );
     }
@@ -227,7 +238,7 @@ public class AylythBlockLootProvider extends FabricBlockLootTableProvider {
                 .dropsWithSilkTouchOrShears(leaves, addSurvivesExplosionCondition(leaves, ItemEntry.builder(drop))
                         .conditionally(TableBonusLootCondition.builder(Enchantments.FORTUNE, chance)))
                 .pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(1.0f))
-                        .conditionally(WITHOUT_SILK_TOUCH_NOR_SHEARS)
+                        .conditionally(NO_SILK_TOUCH_OR_SHEARS)
                         .with(applyExplosionDecay(leaves, ItemEntry.builder(Items.STICK)
                                 .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f))))
                                 .conditionally(TableBonusLootCondition.builder(Enchantments.FORTUNE, 0.02f, 0.022222223f, 0.025f, 0.033333335f, 0.1f)))
