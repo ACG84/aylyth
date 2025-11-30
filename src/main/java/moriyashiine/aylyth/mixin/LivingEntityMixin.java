@@ -79,7 +79,7 @@ public abstract class LivingEntityMixin extends Entity {
 
 	@Inject(method = "drop", at = @At("HEAD"), cancellable = true)
 	private void shuckLogic(DamageSource source, CallbackInfo ci) {
-		if (this.hasAttached(AylythEntityAttachmentTypes.PREVENT_DROPS)) {
+		if (((AylythDropsAccessor) (Object) this).aylyth$shouldPreventDrops()) {
 			ci.cancel();
 		}
 	}
