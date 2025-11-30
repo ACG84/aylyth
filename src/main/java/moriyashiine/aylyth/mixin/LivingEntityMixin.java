@@ -70,7 +70,7 @@ public abstract class LivingEntityMixin extends Entity {
 	@Inject(method = "heal", at = @At("HEAD"), cancellable = true)
 	private void preventHeal(float amount, CallbackInfo callbackInfo) {
 		for (StatusEffectInstance effect : this.getStatusEffects()) {
-			if (TagUtil.isIn(AylythStatusEffectTags.PREVENTS_HEALING, effect.getEffectType())) {
+			if (((AylythDropsAccessor) (Object) this).aylyth$shouldPreventDrops()) {
 				callbackInfo.cancel();
 			}
 		}
