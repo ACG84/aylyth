@@ -38,7 +38,7 @@ public interface AylythBlocks {
 
 	Block GREEN_AYLYTHIAN_OAK_SAPLING = register("green_aylythian_oak_sapling", new SaplingBlock(new SimpleLargeSaplingGenerator(null, null), copyOf(Blocks.OAK_SAPLING).mapColor(MapColor.GREEN)));
 	Block POTTED_GREEN_AYLYTHIAN_OAK_SAPLING = register("potted_green_aylythian_oak_sapling", new FlowerPotBlock(GREEN_AYLYTHIAN_OAK_SAPLING, AbstractBlock.Settings.copy(Blocks.FLOWER_POT)));
-	Block GREEN_AYLYTHIAN_OAK_LEAVES = register("green_aylythian_oak_leaves", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).strength(0.2F).tickRandomly().sound(BlockSoundGroup.GRASS).nonOpaque().allowsSpawning(Blocks::canSpawnOnLeaves).suffocates(Blocks::never).blockVision(Blocks::never)));
+	Block GREEN_AYLYTHIAN_OAK_LEAVES = register("green_aylythian_oak_leaves", new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).strength(0.2F).ticksRandomly().sound(BlockSoundGroup.GRASS).nonOpaque().allowsSpawning(Blocks::canSpawnOnLeaves).suffocates(Blocks::never).blockVision(Blocks::never)));
 	Block DARK_OAK_BRANCH = register("dark_oak_branch", new BranchBlock(AbstractBlock.Settings.create().mapColor(MapColor.DARK_GREEN).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS).pistonBehavior(PistonBehavior.DESTROY)));
 	Block BARE_DARK_OAK_BRANCH = register("bare_dark_oak_branch", new BranchBlock(copyOf(DARK_OAK_BRANCH).mapColor(MapColor.BROWN)));
 	
