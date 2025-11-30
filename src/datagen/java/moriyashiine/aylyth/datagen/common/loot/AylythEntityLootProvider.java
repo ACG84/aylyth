@@ -58,7 +58,8 @@ public class AylythEntityLootProvider extends SimpleFabricLootTableProvider {
                 .pool(LootPool.builder().with(ItemEntry.builder(Items.BONE)).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 2))).apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0, 1))))
                 .pool(LootPool.builder().with(ItemEntry.builder(Items.STICK)).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 2))).apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0, 1))))
                 .pool(LootPool.builder().with(ItemEntry.builder(AylythItems.YMPE_SAPLING)).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 1))).apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0, 1))))
-                .pool(LootPool.builder().with(ItemEntry.builder(AylythItems.YMPE_FRUIT)).conditionally(KilledByPlayerLootCondition.builder().build()).conditionally(RandomChanceWithLootingLootCondition.builder(0.25f, 0.01f)))
+                // FIXED: Removed .build() from KilledByPlayerLootCondition
+                .pool(LootPool.builder().with(ItemEntry.builder(AylythItems.YMPE_FRUIT)).conditionally(KilledByPlayerLootCondition.builder()).conditionally(RandomChanceWithLootingLootCondition.builder(0.25f, 0.01f)))
                 .pool(LootPool.builder().with(ItemEntry.builder(AylythItems.WRONGMEAT)).conditionally(DamageSourcePropertiesLootCondition.builder(DamageSourcePredicate.Builder.create()
                         .sourceEntity(EntityPredicate.Builder.create()
                                 .equipment(EntityEquipmentPredicate.Builder.create()
@@ -75,7 +76,8 @@ public class AylythEntityLootProvider extends SimpleFabricLootTableProvider {
                 .pool(LootPool.builder().with(ItemEntry.builder(Items.BONE)).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 2))).apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0, 1))))
                 .pool(LootPool.builder().with(ItemEntry.builder(Items.STICK)).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 2))).apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0, 1))))
                 .pool(LootPool.builder().with(ItemEntry.builder(AylythItems.YMPE_SAPLING)).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0, 1))).apply(LootingEnchantLootFunction.builder(UniformLootNumberProvider.create(0, 1))))
-                .pool(LootPool.builder().with(ItemEntry.builder(AylythItems.YMPE_FRUIT)).conditionally(KilledByPlayerLootCondition.builder().build()).conditionally(RandomChanceWithLootingLootCondition.builder(0.25f, 0.01f)))
+                // FIXED: Removed .build() from KilledByPlayerLootCondition
+                .pool(LootPool.builder().with(ItemEntry.builder(AylythItems.YMPE_FRUIT)).conditionally(KilledByPlayerLootCondition.builder()).conditionally(RandomChanceWithLootingLootCondition.builder(0.25f, 0.01f)))
                 .pool(LootPool.builder()
                         .with(ItemEntry.builder(AylythItems.WRONGMEAT))
                         .with(ItemEntry.builder(AylythItems.AYLYTHIAN_HEART))
@@ -152,4 +154,5 @@ public class AylythEntityLootProvider extends SimpleFabricLootTableProvider {
             consumer.accept(entry.getKey(), entry.getValue());
         }
     }
+}
 }
